@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import LyricLine from './lyricline';
 import axios from 'axios';
+import Metronome from '../metronome/Metronome.jsx'
 
 const StyledLyrics = styled.div`
   color: #fcfbd6;
@@ -12,6 +13,7 @@ const StyledLyrics = styled.div`
   margin-bottom: 1rem;
   margin-top: 2rem;
   font-weight: bold;
+  margin-bottom: 5rem;
 `
 const StyledTrack = styled.h1`
   display: flex;
@@ -98,7 +100,6 @@ export default function Lyrics ({ lyrics, loggedStatus, currentUser }) {
         {lyrics.songName}
       </StyledTrack>
       <StyledButtons>
-        <AddSong style={{fontSize: '1.3rem', width: '15rem', marginBottom: '0rem', marginTop: '0rem'}}>Start a new Song</AddSong>
         {loggedStatus ? <AddSong onClick={addLyricsToLibrary} style={{fontSize: '1.3rem', width: '15rem', marginBottom: '0rem', marginTop: '0rem'}}>{added}</AddSong> : <span></span>}
       </StyledButtons>
       <StyledArtist>
@@ -106,9 +107,9 @@ export default function Lyrics ({ lyrics, loggedStatus, currentUser }) {
       </StyledArtist>
       {lyricLines}
       <StyledButtons>
-        <AddSong>Start a new Song</AddSong>
         {loggedStatus ? <AddSong onClick={addLyricsToLibrary}>{added}</AddSong> : <span></span>}
       </StyledButtons>
+      <Metronome/>
     </StyledLyrics>
   )
 }

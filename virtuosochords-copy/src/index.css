@@ -36,29 +36,55 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.metronome {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 30px;
+  background-attachment: fixed;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.bpm-slider input {
+  width: 100%;
+  margin: 10px;
+  background-color: #fcfbd660;
+  border-radius: 5px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #fcfbd6;
+  height: 1rem;
+  width: 16px;
+  border-radius: 5px;
+  background: #85acb1;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+.metronome button {
+  background: #3333337a;
+  padding: 10px;
+  border: 1px solid #fcfbd6;
+  border-radius: 5px;
+  width: 100px;
+  color: #85acb1;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: 0.3s;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
+
+.metronome button:hover {
+  box-shadow: 0 0 20px rgba(196, 123, 211, 0.685);
+  color: #fcfbd6;
+}
 
 .search-submit {
   transition: 0.3s;

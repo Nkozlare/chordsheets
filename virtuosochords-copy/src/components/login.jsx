@@ -127,7 +127,8 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
           lyricPage: false,
           loginPage: false,
           loading: false,
-          library: false
+          library: false,
+          write: false
         })
         setCurrentUser(formData.createUser);
         setLoggedStatus(true);
@@ -155,7 +156,8 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
           lyricPage: false,
           loginPage: false,
           loading: false,
-          library: false
+          library: false,
+          write: false
         })
         setCurrentUser(formData.loginUser);
         setLoggedStatus(true);
@@ -182,7 +184,7 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
                 marginTop: '1rem',
                 textAlign: 'right',
                 marginRight: '1rem'
-              }}></input>
+              }} required></input>
               USERNAME
             </label>
             <label>
@@ -195,7 +197,7 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
                 marginTop: '1rem',
                 textAlign: 'right',
                 marginRight: '1rem'
-              }}></input>
+              }} required></input>
               PASSWORD
             </label>
             <input className='search-submit' type='submit' value='Log in' style={{
@@ -224,7 +226,7 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
                 color: '#fcfbd686',
                 marginTop: '1rem',
                 marginLeft: '1rem'
-              }}></input>
+              }} required></input>
             </label>
             <label>
               PASSWORD
@@ -236,7 +238,7 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
                 color: '#fcfbd686',
                 marginTop: '1rem',
                 marginLeft: '1rem'
-              }}></input>
+              }} required></input>
             </label>
             <input className='search-submit' type='submit' value='Create Account' style={{
                   padding: '.5rem',

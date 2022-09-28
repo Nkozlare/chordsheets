@@ -45,9 +45,9 @@ export default function LyricLine ({ line }) {
             <input type='text'></input>
             <input type='text'></input>
             <input type='text'></input>
-            <input type='text'></input>
-            <input type='text'></input>
-            <input type='text'></input>
+            <input type='text' ></input>
+            <input type='text' ></input>
+            <input type='text' ></input>
           </ChordLine>
         <StyledLyric>
           {line}
@@ -57,7 +57,7 @@ export default function LyricLine ({ line }) {
   } else {
     return (
       <ChordLine>
-        <input type='text' style={{width: '7rem', marginBottom: '1rem'}}></input>
+        <input type='text' style={{width: '10rem', marginBottom: '1rem'}}></input>
       </ChordLine>
     )
   }

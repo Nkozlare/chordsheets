@@ -9,7 +9,8 @@ import Spinner from './components/spinner.jsx';
 import SongList from './components/songlist.jsx';
 import Lyrics from './components/lyrics.jsx';
 import Login from './components/login.jsx';
-import Tabs from './components/tabs.jsx'
+import Tabs from './components/tabs.jsx';
+import Write from './components/write.jsx'
 
 const StyledApp = styled.div`
   width: 90vw;
@@ -27,12 +28,13 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState({
-    home: true,
+    home: false,
     songList: false,
     lyricPage: false,
     loginPage: false,
     loading: false,
-    library: false
+    library: false,
+    write: true,
   })
   const [songs, setSongs] = useState([
     {
@@ -76,11 +78,12 @@ function App() {
   const [currentUser, setCurrentUser] = useState('nkozlare');
   const [loggedStatus, setLoggedStatus] = useState(false);
 
-  if (page.home) {
+
+  if (page.home || (page.lyricPage && lyrics[lyricIndex] === undefined)) {
     return (
       <StyledApp>
         <NavBar setPage={setPage} loggedStatus={loggedStatus} currentUser={currentUser} setSongs={setSongs}/>
-        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics}/>
+        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics} lyricIndex={lyricIndex} page={page}/>
         <SearchBar setSongs={setSongs} setPage={setPage}/>
       </StyledApp>
     )
@@ -88,21 +91,22 @@ function App() {
     return (
       <StyledApp>
         <NavBarTwo setPage={setPage} loggedStatus={loggedStatus} currentUser={currentUser} setSongs={setSongs}/>
-        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics}/>
+        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics} lyricIndex={lyricIndex} page={page}/>
         <SongList setPage={setPage}
           songs={songs}
           setLyrics={setLyrics}
           page={page}
           setLyricIndex={setLyricIndex}
           lyrics={lyrics}
+          lyricIndex={lyricIndex}
           />
       </StyledApp>
     )
   } else if (page.lyricPage) {
     return (
-      <StyledApp style={{backgroundColor: '#453c46ee'}}>
+      <StyledApp style={{backgroundColor: '#313131ec'}}>
         <NavBarTwo setPage={setPage} loggedStatus={loggedStatus} currentUser={currentUser} setSongs={setSongs}/>
-        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics}/>
+        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics} lyricIndex={lyricIndex} page={page}/>
         <Lyrics lyrics={lyrics[lyricIndex]} loggedStatus={loggedStatus} currentUser={currentUser}/>
       </StyledApp>
     )
@@ -110,21 +114,30 @@ function App() {
     return (
       <StyledApp>
           <NavBarThree setPage={setPage} loggedStatus={loggedStatus} page={page} currentUser={currentUser} setSongs={setSongs}/>
-          <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics}/>
+          <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics} lyricIndex={lyricIndex} page={page}/>
           <Login setPage={setPage} setCurrentUser={setCurrentUser} setLoggedStatus={setLoggedStatus}/>
       </StyledApp>
     )
   } else if (page.library) {
     return (
       <StyledApp>
-          <NavBarThree setPage={setPage} loggedStatus={loggedStatus} page={page} currentUser={currentUser} setSongs={setSongs}/>
-          <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics}/>
-          <SongList setPage={setPage}
-            songs={songs}
-            setLyrics={setLyrics}
-            page={page}
-            setLyricIndex={setLyricIndex}
-            lyrics={lyrics}/>
+        <NavBarThree setPage={setPage} loggedStatus={loggedStatus} page={page} currentUser={currentUser} setSongs={setSongs}/>
+        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics} lyricIndex={lyricIndex} page={page}/>
+        <SongList setPage={setPage}
+          songs={songs}
+          setLyrics={setLyrics}
+          page={page}
+          setLyricIndex={setLyricIndex}
+          lyrics={lyrics}
+          lyricIndex={lyricIndex}/>
+      </StyledApp>
+    )
+  } else if (page.write) {
+    return (
+      <StyledApp style={{backgroundColor: '#313131ec'}}>
+        <NavBarTwo setPage={setPage} loggedStatus={loggedStatus} currentUser={currentUser} setSongs={setSongs}/>
+        <Tabs lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics} lyricIndex={lyricIndex} page={page}/>
+        <Write setLyrics={setLyrics} lyrics={lyrics} setLyricIndex={setLyricIndex} setPage={setPage}/>
       </StyledApp>
     )
   }

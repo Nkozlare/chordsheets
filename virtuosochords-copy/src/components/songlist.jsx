@@ -10,7 +10,7 @@ const StyledSongList = styled.div`
   margin-top: 3rem;
 `
 
-export default function SongList ({ songs, setLyrics, setPage, page, setLyricIndex, lyrics }) {
+export default function SongList ({ lyricIndex, songs, setLyrics, setPage, page, setLyricIndex, lyrics }) {
   const listSongs = songs.map((song) => {
     <SongBox index={song.trackId}
     artist={song.artist}
@@ -34,7 +34,8 @@ export default function SongList ({ songs, setLyrics, setPage, page, setLyricInd
               setPage={setPage}
               setLyricIndex={setLyricIndex}
               songsLength={songs.length}
-              lyricsArray={lyrics}/>
+              lyricsArray={lyrics}
+              lyricIndex={lyricIndex}/>
             )}
           )
         }
@@ -57,7 +58,8 @@ export default function SongList ({ songs, setLyrics, setPage, page, setLyricInd
               setPage={setPage}
               setLyricIndex={setLyricIndex}
               songsLength={songs.length}
-              lyricsArray={lyrics}/>
+              lyricsArray={lyrics}
+              lyricIndex={lyricIndex}/>
             )}
           )
         }

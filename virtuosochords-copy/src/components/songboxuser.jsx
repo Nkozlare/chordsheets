@@ -46,7 +46,8 @@ export default function SongBoxUser ({artist, name, album, index, lyrics, setLyr
       lyricPage: true,
       loginPage: false,
       loading: false,
-      library: false
+      library: false,
+      write: false
     })
   }
   return (

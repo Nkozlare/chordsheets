@@ -52,7 +52,8 @@ export default function SongBox ({artist, name, album, index, setLyrics, setHome
           lyricPage: true,
           loginPage: false,
           loading: false,
-          library: false
+          library: false,
+          write: false
         })
       }).catch((err) => {
         console.log(err);

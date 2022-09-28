@@ -71,12 +71,14 @@ export default function NavBar ({ setPage, loggedStatus, currentUser, setSongs }
         lyricPage: false,
         loginPage: false,
         loading: false,
-        library: true
+        library: true,
+        write: false
       })
     }).catch((err) => {
       console.log(err);
     })
   }
+
   const goToLogin = (e) => {
     e.preventDefault()
     setPage({
@@ -85,15 +87,31 @@ export default function NavBar ({ setPage, loggedStatus, currentUser, setSongs }
       lyricPage: false,
       loginPage: true,
       loading: false,
-      library: false
+      library: false,
+      write: false
     });
   }
+
+  const goToWriteSong = (e) => {
+    e.preventDefault()
+    setPage({
+      home: false,
+      songList: false,
+      lyricPage: false,
+      loginPage: false,
+      loading: false,
+      library: false,
+      write: true
+    });
+  }
+
   return (
     <StyledNavBar>
       <Icon>
         Prodi-G
       </Icon>
       <Links>
+        <p onClick={goToWriteSong}>WRITE</p>
         {loggedStatus ? <p onClick={goToLibrary}>LIBRARY</p> : <p onClick={goToLogin}>LOG IN</p>}
       </Links>
     </StyledNavBar>

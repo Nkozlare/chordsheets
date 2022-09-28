@@ -102,7 +102,8 @@ export default function SearchBar ({ setPage, setSongs }) {
           songList: true,
           loginPage: false,
           loading: false,
-          library: false
+          library: false,
+          write: false
         })
       }).catch((err) => {
         console.log(err);
@@ -123,7 +124,8 @@ export default function SearchBar ({ setPage, setSongs }) {
           songList: true,
           loginPage: false,
           loading: false,
-          library: false
+          library: false,
+          write: false
         })
       }).catch((err) => {
         console.log(err);
@@ -143,7 +145,8 @@ export default function SearchBar ({ setPage, setSongs }) {
           lyricPage: false,
           songList: true,
           loginPage: false,
-          loading: false
+          loading: false,
+          write: false
         })
       }).catch((err) => {
         console.log(err);

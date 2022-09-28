@@ -13,10 +13,10 @@ const StyledTabs = styled.div`
   position: absolute;
 `
 
-export default function Tabs ({ lyrics, setLyricIndex, setPage, setLyrics }) {
+export default function Tabs ({ page, lyricIndex, lyrics, setLyricIndex, setPage, setLyrics }) {
   var tabList = lyrics.map((lyric, index) => {
     return (
-      <Tab lyric={lyric} key={index} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics}/>
+      <Tab lyric={lyric} key={index} index={index} setLyricIndex={setLyricIndex} setPage={setPage} setLyrics={setLyrics} lyrics={lyrics} lyricIndex={lyricIndex} page={page}/>
     )
   })
   return (

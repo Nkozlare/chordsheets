@@ -72,7 +72,8 @@ export default function NavBarTwo ({ setPage, loggedStatus, currentUser, setSong
         lyricPage: false,
         loginPage: false,
         loading: false,
-        library: true
+        library: true,
+        write: false
       })
     }).catch((err) => {
       console.log(err);
@@ -86,7 +87,8 @@ export default function NavBarTwo ({ setPage, loggedStatus, currentUser, setSong
       lyricPage: false,
       loginPage: false,
       loading: false,
-      library: false
+      library: false,
+      write: false
     });
   }
   const goToLogin = (e) => {
@@ -96,15 +98,31 @@ export default function NavBarTwo ({ setPage, loggedStatus, currentUser, setSong
       songList: false,
       lyricPage: false,
       loginPage: true,
-      loading: false
+      loading: false,
+      write: false
     });
   }
+
+  const goToWriteSong = (e) => {
+    e.preventDefault()
+    setPage({
+      home: false,
+      songList: false,
+      lyricPage: false,
+      loginPage: false,
+      loading: false,
+      library: false,
+      write: true
+    });
+  }
+
   return (
     <StyledNavBar>
       <Icon>
         Prodi-G
       </Icon>
       <Links>
+        <p onClick={goToWriteSong}>WRITE</p>
         <p onClick={goHome}>NEW SONG</p>
         {loggedStatus ? <p onClick={goToLibrary}>LIBRARY</p> : <p onClick={goToLogin}>LOG IN</p>}
       </Links>
