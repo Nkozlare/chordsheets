@@ -46,7 +46,7 @@ const AddSong = styled.div`
   color: #85acb1;
   margin-left: 0rem;
   margin-top: 2rem;
-  width: 20rem;
+  width: 15rem;
   font-size: 1.5rem;
   transition: 0.3s;
   cursor: pointer;
@@ -65,6 +65,8 @@ const StyledButtons = styled.div`
 export default function Lyrics ({ lyrics, loggedStatus, currentUser }) {
   const lyricArray = lyrics.lyrics.split(/\r?\n/);
   const [added, setAdded] = useState('Add song to Library');
+  const [tuner, setTuner] = useState(true)
+  const [tunerText, setTunerText] = useState('Metronome Toggle');
   for (var i = 0; i < lyricArray.length; i ++) {
     if (!lyricArray[i]) {
       lyricArray.splice(i, 0);
@@ -75,6 +77,10 @@ export default function Lyrics ({ lyrics, loggedStatus, currentUser }) {
       <LyricLine key={index} line={line}/>
     )
   })
+  const tunerToggle = (e) => {
+    e.preventDefault();
+    setTuner(!tuner);
+  }
   const addLyricsToLibrary = (e) => {
     e.preventDefault();
     const goodLyrics = lyrics.lyrics.replace(/'/g, '');
@@ -108,8 +114,9 @@ export default function Lyrics ({ lyrics, loggedStatus, currentUser }) {
       {lyricLines}
       <StyledButtons>
         {loggedStatus ? <AddSong onClick={addLyricsToLibrary}>{added}</AddSong> : <span></span>}
+        <AddSong onClick={tunerToggle}>{tunerText}</AddSong>
       </StyledButtons>
-      <Metronome/>
+      {tuner ? <Metronome/> : <span></span>}
     </StyledLyrics>
   )
 }
