@@ -101,7 +101,8 @@ export default function SearchBar ({ setPage, setSongs }) {
           lyricPage: false,
           songList: true,
           loginPage: false,
-          loading: false
+          loading: false,
+          library: false
         })
       }).catch((err) => {
         console.log(err);
@@ -121,7 +122,8 @@ export default function SearchBar ({ setPage, setSongs }) {
           lyricPage: false,
           songList: true,
           loginPage: false,
-          loading: false
+          loading: false,
+          library: false
         })
       }).catch((err) => {
         console.log(err);
@@ -178,7 +180,7 @@ export default function SearchBar ({ setPage, setSongs }) {
                 border: '1px solid #fcfbd6',
                 borderRadius: '5px',
                 color: '#85acb1',
-                marginLeft: '1rem'
+                marginLeft: '1rem',
               }}/>
         </form>
           <span>

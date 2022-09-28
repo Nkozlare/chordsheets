@@ -32,7 +32,6 @@ const ChordLine = styled.form`
 `
 
 export default function LyricLine ({ line }) {
-  useState
   if(line !== '') {
     return (
       <StyledLine>

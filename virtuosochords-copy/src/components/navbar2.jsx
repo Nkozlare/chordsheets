@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import Spinner from './spinner';
+import axios from 'axios';
 
 const StyledNavBar = styled.div`
   background-color: black;
@@ -41,7 +42,42 @@ const Links = styled.h2`
   }
 `
 
-export default function NavBarTwo ({setPage, loggedStatus}) {
+export default function NavBarTwo ({ setPage, loggedStatus, currentUser, setSongs }) {
+  const goToLibrary = (e) => {
+    const updateSongs = (songs) => {
+      var songArray = [];
+      for (var i = 0; i < songs.length; i ++) {
+        var song = {
+          trackName: songs[i].song,
+          trackId: songs[i].lyrics_id,
+          albumName: songs[i].album,
+          artist: songs[i].artist,
+          lyrics: songs[i].lyrics
+        }
+        songArray.push(song);
+      }
+      return songArray;
+    }
+    e.preventDefault();
+    axios.get('/getLyrics', {
+      params: {
+        username: currentUser
+      }
+    }).then((data) => {
+      console.log(data.data.rows);
+      setSongs(updateSongs(data.data.rows))
+      setPage({
+        home: false,
+        songList: false,
+        lyricPage: false,
+        loginPage: false,
+        loading: false,
+        library: true
+      })
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
   const goHome = (e) => {
     e.preventDefault();
     setPage({
@@ -49,7 +85,8 @@ export default function NavBarTwo ({setPage, loggedStatus}) {
       songList: false,
       lyricPage: false,
       loginPage: false,
-      loading: false
+      loading: false,
+      library: false
     });
   }
   const goToLogin = (e) => {
@@ -69,7 +106,7 @@ export default function NavBarTwo ({setPage, loggedStatus}) {
       </Icon>
       <Links>
         <p onClick={goHome}>NEW SONG</p>
-        {loggedStatus ? <p>LIBRARY</p> : <p onClick={goToLogin}>LOG IN</p>}
+        {loggedStatus ? <p onClick={goToLibrary}>LIBRARY</p> : <p onClick={goToLogin}>LOG IN</p>}
       </Links>
     </StyledNavBar>
   )

@@ -8,10 +8,11 @@ const createUsersTable = `CREATE TABLE IF NOT EXISTS users(
 
 const createLyricsTable = `CREATE TABLE IF NOT EXISTS lyrics(
   lyrics_id serial PRIMARY KEY,
+  song VARCHAR ( 100 ) NOT NULL,
   lyrics VARCHAR ( 10000 ) NOT NULL,
   artist VARCHAR ( 100 ) NOT NULL,
   album VARCHAR ( 100 ) NOT NULL,
-  username_id INTEGER NOT NULL
+  username_id VARCHAR ( 100 ) NOT NULL
 )`
 
 db.query(createUsersTable)

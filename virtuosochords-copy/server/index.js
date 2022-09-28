@@ -83,13 +83,13 @@ app.post('/createUser', function (req, res) {
 })
 
 app.post('/createLyrics', function (req, res) {
-  console.log(req.body);
-  // addLyrics(req.query)
-  //   .then((data) => {
-  //     res.send(data);
-  //   }).catch((err) => {
-  //     res.send(err);
-  //   })
+  console.log(req.body.body);
+  addLyrics(req.body.body)
+    .then((data) => {
+      res.send(data);
+    }).catch((err) => {
+      res.send(err);
+    })
 })
 
 app.get('/getUser', function (req, res) {
@@ -102,7 +102,7 @@ app.get('/getUser', function (req, res) {
     })
 })
 
-app.get('/createUser', function (req, res) {
+app.get('/getLyrics', function (req, res) {
   console.log(req.query);
   getLyrics(req.query)
     .then((data) => {

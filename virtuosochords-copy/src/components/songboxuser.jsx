@@ -29,34 +29,25 @@ const StyledSongBox = styled.div`
   }
 `
 
-export default function SongBox ({artist, name, album, index, setLyrics, setHome, setPage, songsLength, lyricsArray, setLyricIndex }) {
+export default function SongBoxUser ({artist, name, album, index, lyrics, setLyrics, setHome, setPage, lyricsArray, songsLength, setLyricIndex }) {
   const getLyrics = (e) => {
     e.preventDefault();
-    axios.get('/lyricFetch', {
-      params: {
-        trackId: index
-      }
+    var currentLyrics = {
+      artist: artist,
+      songName: name,
+      lyrics: lyrics,
+      album: album,
+    }
+    setLyrics(lyricsArray.concat(currentLyrics));
+    setLyricIndex(lyricsArray.length);
+    setPage({
+      home: false,
+      songList: false,
+      lyricPage: true,
+      loginPage: false,
+      loading: false,
+      library: false
     })
-      .then((data) => {
-        var lyrics = {
-          artist: artist,
-          songName: name,
-          lyrics: data.data.lyrics.lyrics_body,
-          album: album,
-        }
-        setLyrics(lyricsArray.concat(lyrics));
-        setLyricIndex(lyricsArray.length)
-        setPage({
-          home: false,
-          songList: false,
-          lyricPage: true,
-          loginPage: false,
-          loading: false,
-          library: false
-        })
-      }).catch((err) => {
-        console.log(err);
-      })
   }
   return (
     <StyledSongBox onClick={getLyrics}>

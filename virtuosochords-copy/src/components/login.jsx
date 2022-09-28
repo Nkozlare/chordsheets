@@ -117,15 +117,17 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
         password: formData.createPassword,
       }
     }).then((data) => {
+      console.log(data);
       if (data.data.name === 'error') {
         setCreateFail(true);
       } else {
         setPage({
-          home: false,
-          songList: true,
+          home: true,
+          songList: false,
           lyricPage: false,
           loginPage: false,
-          loading: false
+          loading: false,
+          library: false
         })
         setCurrentUser(formData.createUser);
         setLoggedStatus(true);
@@ -143,15 +145,17 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
         password: formData.loginPassword,
       }
     }).then((data) => {
+      console.log(data);
       if (data.data.name === 'error') {
         setLoginFail(true);
       } else {
         setPage({
-          home: false,
-          songList: true,
+          home: true,
+          songList: false,
           lyricPage: false,
           loginPage: false,
-          loading: false
+          loading: false,
+          library: false
         })
         setCurrentUser(formData.loginUser);
         setLoggedStatus(true);
@@ -253,6 +257,9 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
       <StyledLoginFailure>
         <p>
           Login information incorrect -- please try again
+        </p>
+        <p>
+          Username is case sensitive
         </p>
         <div className='search-submit' onClick={backToLogin}>
           Back to login page
