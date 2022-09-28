@@ -146,8 +146,8 @@ export default function Login ({ setPage, setCurrentUser, setLoggedStatus }) {
         password: formData.loginPassword,
       }
     }).then((data) => {
-      console.log(data);
-      if (data.data.name === 'error') {
+      console.log(data.data);
+      if (data.data.rows.length === 0) {
         setLoginFail(true);
       } else {
         setPage({
