@@ -22,6 +22,7 @@ const StyledApp = styled.div`
   display: flex;
   justify-content: center;
   color: #fcfbd6;
+  overflow-x: hidden;
 `
 
 function App() {
